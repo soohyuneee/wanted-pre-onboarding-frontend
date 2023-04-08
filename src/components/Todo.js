@@ -5,6 +5,7 @@ import API from '../modules/API';
 import {TODO_URL} from '../modules/url';
 import TodoItem from './TodoItem';
 import * as S from './style/TodoStyle';
+import {MdOutlineAdd} from 'react-icons/md';
 
 function Todo() {
 	const [todo, setTodo] = useState('');
@@ -18,9 +19,11 @@ function Todo() {
 	};
 
 	useEffect(() => {
-		API.get(TODO_URL, config).then((res) => {
-			setTodos(res.data);
-		});
+		if (user) {
+			API.get(TODO_URL, config).then((res) => {
+				setTodos(res.data);
+			});
+		}
 	}, []);
 
 	const onCreate = async () => {
@@ -29,7 +32,7 @@ function Todo() {
 			setTodos([...todos, res.data]);
 			setTodo('');
 		} catch (err) {
-			console.log(err.response.data.message);
+			alert(err.response.data.message);
 		}
 	};
 
@@ -41,18 +44,24 @@ function Todo() {
 	return (
 		<S.BgColor>
 			<S.Container>
-				<button onClick={onLogout}>로그아웃</button>
-				<h2>My Todos</h2>
-				<div>
+				<S.LogoutBtn>
+					<S.Btn onClick={onLogout}>Logout</S.Btn>
+				</S.LogoutBtn>
+				<S.Title>My Todos</S.Title>
+				<S.AddContainer>
 					<S.NomalInput data-testid="new-todo-input" type="text" onChange={(e) => setTodo(e.target.value)} value={todo} />
-					<button data-testid="new-todo-add-button" onClick={onCreate}>
-						추가
-					</button>
-				</div>
-				{todos.map((item) => {
-					return <TodoItem key={item.id} todos={todos} setTodos={setTodos} item={item} user={user} />;
-				})}
-				{!user && <Navigate to={SIGNIN} replace={true} />}
+					<div>
+						<S.IconBtn data-testid="new-todo-add-button" onClick={onCreate}>
+							<MdOutlineAdd className="icon" />
+						</S.IconBtn>
+					</div>
+				</S.AddContainer>
+				<S.TodoList>
+					{todos.map((item) => {
+						return <TodoItem key={item.id} todos={todos} setTodos={setTodos} item={item} user={user} />;
+					})}
+					{!user && <Navigate to={SIGNIN} replace={true} />}
+				</S.TodoList>
 			</S.Container>
 		</S.BgColor>
 	);
