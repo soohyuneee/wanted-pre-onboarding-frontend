@@ -25,7 +25,6 @@ function SignUp() {
 			[e.target.name]: e.target.value,
 		};
 		setValue(changeValue);
-		console.log(isValidEmail, isValidPassword);
 	};
 
 	const onSubmit = async (e) => {
