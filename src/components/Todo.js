@@ -24,6 +24,7 @@ function Todo() {
 				setTodos(res.data);
 			});
 		}
+		// eslint-disable-next-line
 	}, []);
 
 	const onCreate = async () => {
