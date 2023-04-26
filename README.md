@@ -5,8 +5,38 @@
 - [배포링크](https://wanted-pre-onboarding-todo.netlify.app/)
 
 ---
+### 파일 구조
+```
+.root
+┣ node_modules
+┣ public
+┗ src
+   ┣ components
+   ┃    ┣ style
+   ┃    ┃   ┣ FormStyle.js
+   ┃    ┃   ┣ GlobalStyle.js
+   ┃    ┃   ┗ TodoStyle.js
+   ┃    ┣ SignIn.js
+   ┃    ┣ SignUp.js
+   ┃    ┣ Todo.js
+   ┃    ┗ TodoItem.js
+   ┣ hooks
+   ┃    ┣ useEmail.js
+   ┃    ┗ usePassword.js
+   ┣ modules
+   ┃    ┣ API.js
+   ┃    ┣ routes.js
+   ┃    ┗ url.js
+   ┣ App.js
+   ┗ index.js
+```
+- components : 로그인, 회원가입, 투두리스트, 투두아이템 컴포넌트가 있고, 스타일드 컴포넌트 파일들은 style 폴더에서 관리합니다.
+- hooks : 로그인과 회원가입에 사용되는 유효성 검사 로직들을 커스텀훅으로 작성하여 hooks 폴더에서 관리합니다.
+- modules : API, URL, Route를 상수로 작성하여 modules 폴더에서 관리합니다.
 
-이미지
+---
+
+### 이미지
 
 - 로그인
   <img width="1440" alt="스크린샷 2023-04-08 오후 11 02 19" src="https://user-images.githubusercontent.com/105588175/230727382-6cb6b20d-44c6-4bb9-877b-2f0fd12b6f0a.png">
@@ -20,13 +50,14 @@
 
 
 ---
+### 프로젝트 소개
 
 - 기술스택 : React, Styled-Component, Axios, React Router, React-Icons <br >
 - 기능 : 회원가입, 로그인, 로그아웃, 투두리스트 CRUD<br >
 
 ---
+### 프로잭트 실행 방법
 
-- 프로잭트 실행 방법
 1. 설치
    ```
    npm install
